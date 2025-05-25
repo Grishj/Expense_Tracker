@@ -1,0 +1,66 @@
+### Create Category
+
+
+POST http://localhost:3000/api/categories
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJlNTkyMjgzZi04OGU3LTRlYzMtYTI2ZS01MTljM2IxMjRjOTQiLCJpYXQiOjE3NDgxMDY1NzksImV4cCI6MTc1MDY5ODU3OX0.9cQezt_7jZEHvshsJy87QSWBZIv818Uj4xFGcgJSWE8
+Content-Type: application/json
+
+{
+  "name": "Utilities"
+}
+
+### ✏️ Update Category  Replace cat123 with a real category ID
+
+PUT http://localhost:3000/api/categories/cat123
+Authorization: Bearer YOUR_JWT_TOKEN
+Content-Type: application/json
+
+{
+  "name": "Transportation"
+}
+
+### ❌ Delete Category
+DELETE http://localhost:3000/api/categories/cat123
+Authorization: Bearer YOUR_JWT_TOKEN
+
+
+###Get All Categories
+
+GET http://localhost:3000/api/categories
+
+
+###📄  Add a New Expense (Auth Required)
+###🧠 Replace YOUR_JWT_TOKEN with the token from the login response
+###🧠 Replace categoryId with a real one from the /categories response
+POST http://localhost:3000/api/expenses
+Authorization: Bearer YOUR_JWT_TOKEN
+Content-Type: application/json
+
+{
+  "title": "Grocery shopping",
+  "amount": 30.23,
+  "date": "2023-03-23T00:00:00.000Z",
+  "categoryId": "PASTE_CATEGORY_ID_HERE"
+}
+### ✏️ Update Expense
+PUT http://localhost:3000/api/expenses/exp123
+Authorization: Bearer YOUR_JWT_TOKEN
+Content-Type: application/json
+
+{
+  "title": "Updated Uber Ride",
+  "amount": 23,
+  "date": "2023-03-24T00:00:00.000Z",
+  "categoryId": "cat123"
+}
+
+###DELETE
+DELETE http://localhost:3000/api/expenses/exp123
+Authorization: Bearer YOUR_JWT_TOKEN
+
+
+
+### Get All Expenses (Auth Required)
+GET http://localhost:3000/api/expenses
+Authorization: Bearer YOUR_JWT_TOKEN
+

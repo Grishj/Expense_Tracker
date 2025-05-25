@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma" // Ensure this path is correct relative to schema.prisma
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") // Ensure DATABASE_URL is set in .env
+}
+
+model User {
+  id        String    @id @default(uuid())
+  name      String
+  email     String    @unique
+  password  String
+    profilePicture String?   // Optional field for storing image URL or path
+
+  expenses  Expense[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Category {
+  id        String    @id @default(uuid())
+  name      String    @unique
+  expenses  Expense[]
+  icon      String   @default("category") // Add default value
+  color     String   @default("#6B7280") //
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Expense {
+  id          String    @id @default(uuid())
+  title       String
+  amount      Float
+  date        DateTime
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String
+  category    Category  @relation(fields: [categoryId], references: [id])
+  categoryId  String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
