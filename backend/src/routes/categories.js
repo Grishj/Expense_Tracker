@@ -1,7 +1,7 @@
 // backend/src/routes/categories.js
 const express = require("express");
 const auth = require("../middleware/authMiddleware");
-const { PrismaClient } = require("../../generated/prisma");
+const prisma = require("../utils/prismaClient");
 
 const router = express.Router();
 const prisma = new PrismaClient();
