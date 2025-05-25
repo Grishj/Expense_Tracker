@@ -1,10 +1,9 @@
 // backend/src/routes/expenses.js
 const express = require("express");
 const auth = require("../middleware/authMiddleware");
-const prisma = require("../utils/prismaClient");
+const prisma = require("../utils/prismaClient"); // ✅ Correct Prisma import
 
 const router = express.Router();
-const prisma = new PrismaClient();
 
 // CREATE an expense
 router.post("/", auth, async (req, res) => {

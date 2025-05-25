@@ -1,10 +1,9 @@
 // backend/src/routes/categories.js
 const express = require("express");
 const auth = require("../middleware/authMiddleware");
-const prisma = require("../utils/prismaClient");
+const prisma = require("../utils/prismaClient"); // ✅ Correct Prisma import
 
 const router = express.Router();
-const prisma = new PrismaClient();
 
 // GET all categories
 router.get("/", async (req, res) => {
