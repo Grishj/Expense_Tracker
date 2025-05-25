@@ -2,26 +2,28 @@
 
 
 POST http://localhost:3000/api/categories
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJlNTkyMjgzZi04OGU3LTRlYzMtYTI2ZS01MTljM2IxMjRjOTQiLCJpYXQiOjE3NDgxMDY1NzksImV4cCI6MTc1MDY5ODU3OX0.9cQezt_7jZEHvshsJy87QSWBZIv818Uj4xFGcgJSWE8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJlNTkyMjgzZi04OGU3LTRlYzMtYTI2ZS01MTljM2IxMjRjOTQiLCJpYXQiOjE3NDgxNDgxODQsImV4cCI6MTc1MDc0MDE4NH0.ISYu0Tqn5Topkoe4sj28uqtRXJZ8lxFyDkibqq8XNTs
 Content-Type: application/json
 
 {
-  "name": "Utilities"
+  "name": "Foods",
+  "icon": "utensils",
+  "color": "#FF6347"
 }
 
 ### ✏️ Update Category  Replace cat123 with a real category ID
 
-PUT http://localhost:3000/api/categories/cat123
-Authorization: Bearer YOUR_JWT_TOKEN
+PUT http://localhost:3000/api/categories/4e1dd3c1-1800-4d67-8ea5-6c459f6d278a
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJlNTkyMjgzZi04OGU3LTRlYzMtYTI2ZS01MTljM2IxMjRjOTQiLCJpYXQiOjE3NDgxNDgxODQsImV4cCI6MTc1MDc0MDE4NH0.ISYu0Tqn5Topkoe4sj28uqtRXJZ8lxFyDkibqq8XNTs
 Content-Type: application/json
 
 {
-  "name": "Transportation"
+  "name": "Foods"
 }
 
 ### ❌ Delete Category
-DELETE http://localhost:3000/api/categories/cat123
-Authorization: Bearer YOUR_JWT_TOKEN
+DELETE http://localhost:3000/api/categories/f62d67db-08b0-4744-9968-553e38f61aa5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJlNTkyMjgzZi04OGU3LTRlYzMtYTI2ZS01MTljM2IxMjRjOTQiLCJpYXQiOjE3NDgxNDgxODQsImV4cCI6MTc1MDc0MDE4NH0.ISYu0Tqn5Topkoe4sj28uqtRXJZ8lxFyDkibqq8XNTs
 
 
 ###Get All Categories
@@ -29,38 +31,75 @@ Authorization: Bearer YOUR_JWT_TOKEN
 GET http://localhost:3000/api/categories
 
 
+###Create bulk categories at once
+POST  http://localhost:3000/api/categories/bulk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJlNTkyMjgzZi04OGU3LTRlYzMtYTI2ZS01MTljM2IxMjRjOTQiLCJpYXQiOjE3NDgxMDY5NjksImV4cCI6MTc1MDY5ODk2OX0.Hy0Z6nEd5Zs-0NLT7f8sxR88qe-wCRzL0iO4Xe-kyvA
+Content-Type: application/json
+
+{
+  "categories": [
+   {
+    "name": "Education",
+    "icon": "school",
+    "color": "#10B981"
+  },
+  {
+    "name": "Others",
+    "icon": "more-horiz",
+    "color": "#6B7280"
+  },
+  {
+    "name": "Loan",
+    "icon": "attach-money",
+    "color": "#8B5CF6"
+  },
+  {
+    "name": "Rent",
+    "icon": "home",
+    "color": "#EC4899"
+  },
+  {
+    "name": "Health & Medicine",
+    "icon": "local-hospital",
+    "color": "#F97316"
+  }
+  ]
+}
+
+
+
 ###📄  Add a New Expense (Auth Required)
 ###🧠 Replace YOUR_JWT_TOKEN with the token from the login response
 ###🧠 Replace categoryId with a real one from the /categories response
 POST http://localhost:3000/api/expenses
-Authorization: Bearer YOUR_JWT_TOKEN
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJlNTkyMjgzZi04OGU3LTRlYzMtYTI2ZS01MTljM2IxMjRjOTQiLCJpYXQiOjE3NDgxMDY5NjksImV4cCI6MTc1MDY5ODk2OX0.Hy0Z6nEd5Zs-0NLT7f8sxR88qe-wCRzL0iO4Xe-kyvA
 Content-Type: application/json
 
 {
   "title": "Grocery shopping",
   "amount": 30.23,
   "date": "2023-03-23T00:00:00.000Z",
-  "categoryId": "PASTE_CATEGORY_ID_HERE"
+  "categoryId": "48a80f77-b828-499a-b999-9b4f87842575"
 }
-### ✏️ Update Expense
-PUT http://localhost:3000/api/expenses/exp123
-Authorization: Bearer YOUR_JWT_TOKEN
+### ✏️ Update Expense   expense id
+PUT http://localhost:3000/api/expenses/cf095b50-d2ae-43cb-a107-8c15f4669d89
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJlNTkyMjgzZi04OGU3LTRlYzMtYTI2ZS01MTljM2IxMjRjOTQiLCJpYXQiOjE3NDgxMDY5NjksImV4cCI6MTc1MDY5ODk2OX0.Hy0Z6nEd5Zs-0NLT7f8sxR88qe-wCRzL0iO4Xe-kyvA
 Content-Type: application/json
 
 {
   "title": "Updated Uber Ride",
   "amount": 23,
   "date": "2023-03-24T00:00:00.000Z",
-  "categoryId": "cat123"
+  "categoryId": "48a80f77-b828-499a-b999-9b4f87842575"
 }
 
 ###DELETE
-DELETE http://localhost:3000/api/expenses/exp123
-Authorization: Bearer YOUR_JWT_TOKEN
+DELETE http://localhost:3000/api/expenses/44f70322-1300-4490-bede-76cde5b7d6b0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJlNTkyMjgzZi04OGU3LTRlYzMtYTI2ZS01MTljM2IxMjRjOTQiLCJpYXQiOjE3NDgxMDY5NjksImV4cCI6MTc1MDY5ODk2OX0.Hy0Z6nEd5Zs-0NLT7f8sxR88qe-wCRzL0iO4Xe-kyvA
 
 
 
 ### Get All Expenses (Auth Required)
 GET http://localhost:3000/api/expenses
-Authorization: Bearer YOUR_JWT_TOKEN
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJlNTkyMjgzZi04OGU3LTRlYzMtYTI2ZS01MTljM2IxMjRjOTQiLCJpYXQiOjE3NDgxMDY5NjksImV4cCI6MTc1MDY5ODk2OX0.Hy0Z6nEd5Zs-0NLT7f8sxR88qe-wCRzL0iO4Xe-kyvA
 

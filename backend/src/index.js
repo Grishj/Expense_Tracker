@@ -1,6 +1,8 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const { exec } = require("child_process");
+
 const authRoutes = require("./routes/auth");
 const expenseRoutes = require("./routes/expenses");
 const categoryRoutes = require("./routes/categories");
@@ -16,6 +18,7 @@ app.use(
     credentials: true,
   })
 );
+
 app.use(express.json());
 
 // Routes
@@ -23,6 +26,18 @@ app.use("/api/auth", authRoutes);
 app.use("/api/expenses", expenseRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/profile", profileRoutes);
+
+// Temporary migration trigger route (for Render deployment)
+app.get("/run-migrations", (req, res) => {
+  exec("npx prisma migrate deploy", (err, stdout, stderr) => {
+    if (err) {
+      console.error(`Migration error: ${stderr}`);
+      return res.status(500).send("Migration failed");
+    }
+    console.log(`Migration output: ${stdout}`);
+    res.send("Migration successful");
+  });
+});
 
 // Error handling middleware
 app.use((err, req, res, next) => {

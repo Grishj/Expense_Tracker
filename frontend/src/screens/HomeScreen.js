@@ -182,7 +182,7 @@ const HomeScreen = ({ navigation }) => {
           {/* Header */}
           <View style={styles.header}>
             <Text style={styles.headerTitle}>Expense Tracker</Text>
-            <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+            <TouchableOpacity onPress={console.log("Profile Pressed")}>
               <Feather name="user" size={24} color="#4a6bff" />
             </TouchableOpacity>
           </View>
