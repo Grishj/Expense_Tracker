@@ -1,12 +1,13 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
-const prisma = require("../utils/prismaClient"); // ✅ Correct Prisma import
+const { PrismaClient } = require("../../generated/prisma");
 const generateToken = require("../utils/generateToken");
 const validator = require("validator");
 
 const router = express.Router();
+const prisma = new PrismaClient();
 
-// POST /api/auth/register
+// POST /register
 router.post("/register", async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -44,11 +45,12 @@ router.post("/register", async (req, res) => {
       id: user.id,
       name: user.name,
       email: user.email,
-      message: "User Registered Successfully",
+      message: "User Registered Successfull",
+
       token,
     });
   } catch (err) {
-    console.error("Registration error:", err);
+    console.error("Registration error:", err); // Log for debugging
     if (err.code === "P2002") {
       return res.status(400).json({ message: "Email already in use" });
     }
@@ -56,7 +58,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// POST /api/auth/login
+// POST /login
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -76,11 +78,12 @@ router.post("/login", async (req, res) => {
       id: user.id,
       name: user.name,
       email: user.email,
-      message: "User Login Successful",
+      message: "User Login Successfull",
+
       token,
     });
   } catch (err) {
-    console.error("Login error:", err);
+    console.error("Login error:", err); // Log for debugging
     res.status(500).json({ error: "Server error, please try again later" });
   }
 });

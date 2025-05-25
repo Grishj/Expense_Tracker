@@ -1,9 +1,9 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
-const prisma = require("../utils/prismaClient"); // ✅ Correct Prisma import
-
+const { PrismaClient } = require("../../generated/prisma");
 const authMiddleware = require("../middleware/authMiddleware");
 
+const prisma = new PrismaClient();
 const router = express.Router();
 
 // GET /api/profile - Fetch user profile
